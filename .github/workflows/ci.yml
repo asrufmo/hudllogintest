@@ -30,4 +30,5 @@ jobs:
       - name: Run tests
         run: |
           ls -R  # 👈 This will help debug directory structure
-          python path/to/your/test_login.py
+          cd $GITHUB_WORKSPACE  # Ensure we're in the root directory
+          python tests/test_login.py
