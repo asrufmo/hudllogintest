@@ -27,8 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run tests
+      - name: Set PYTHONPATH
         run: |
-          ls -R  # 👈 This will help debug directory structure
-          cd $GITHUB_WORKSPACE  # Ensure we're in the root directory
+          export PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE
           python tests/test_login.py
