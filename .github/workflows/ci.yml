@@ -27,7 +27,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Set PYTHONPATH
+      - name: Run tests and generate HTML report
         run: |
-          export PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE
-          python tests/test_login.py
+          pytest --html=results.html  # Generate the HTML report
+
+      - name: Upload HTML report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pytest-html-report
+          path: results.html  # Upload the HTML report
