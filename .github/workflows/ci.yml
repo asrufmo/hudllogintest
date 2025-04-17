@@ -29,5 +29,5 @@ jobs:
       - name: Run tests
         run: |
           echo "Running tests with BASE_URL=$BASE_URL"
-          python your_test_script.py
+          python test_login.py
 
