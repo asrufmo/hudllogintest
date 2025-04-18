@@ -37,3 +37,6 @@ A simple Selenium-based login test for Hudl using Python + Pytest.
 - Enable parallel test execution using to speed up test suites
 - Archive and visualize test reports (e.g., HTML, Allure) in CI pipelines
 - Improve logging and debugging with screenshots on failure
+
+### Known Issues
+- **Test `test_login_from_footer`**: This test is currently failing due to a timeout waiting for the login page to load properly. This issue was not resolved within the 2-3 hour timeframe for this task but can be investigated further. The remaining tests are passing and cover the main login functionality.

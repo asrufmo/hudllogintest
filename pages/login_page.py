@@ -1,28 +1,17 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from config import BASE_URL
 
 
 class LoginPage:
-    # Locators
-    LOGIN_SELECT_BTN = (By.CSS_SELECTOR, "[data-qa-id='login-select']")
-    HUDL_LOGIN_BTN = (By.XPATH, "//span[text()='Hudl']")
-    USERNAME_INPUT = (By.ID, "username")
+    # Login form locators
+    USERNAME_INPUT = (By.XPATH, "//input[@id='username' and @name='username']")
     CONTINUE_BTN = (By.NAME, "action")
     PASSWORD_INPUT = (By.ID, "password")
 
-    # Locators for bottom login link
-    BOTTOM_LOGIN_LINK = (By.LINK_TEXT, "Login")
-
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
-
-    def go_to_login_page(self):
-        self.driver.get(BASE_URL)
-        self.wait.until(EC.element_to_be_clickable(self.LOGIN_SELECT_BTN)).click()
-        self.wait.until(EC.element_to_be_clickable(self.HUDL_LOGIN_BTN)).click()
+        self.wait = WebDriverWait(driver, 20)
 
     def enter_username(self, username):
         self.wait.until(EC.presence_of_element_located(self.USERNAME_INPUT)).send_keys(username)
@@ -39,8 +28,19 @@ class LoginPage:
         self.enter_password(password)
         self.click_continue()
 
-    def click_bottom_login_link(self):
-        self.wait.until(EC.element_to_be_clickable(self.BOTTOM_LOGIN_LINK)).click()
-
     def is_login_page_loaded(self):
-        return "Login" in self.driver.title
+        try:
+            self.wait.until(EC.presence_of_element_located(self.USERNAME_INPUT))
+            return True
+        except:
+            return False
+
+    def wait_until_loaded(self):
+        self.wait.until(EC.presence_of_element_located(self.USERNAME_INPUT))
+        # Use JavaScript to ensure the element is in view
+        username_input = self.driver.find_element(*self.USERNAME_INPUT)
+        self.driver.execute_script("arguments[0].scrollIntoView();", username_input)
+        self.wait.until(EC.element_to_be_clickable(self.USERNAME_INPUT))  # Ensure it's clickable
+
+    def wait_until_login_page_is_ready(self):
+        self.wait.until(EC.element_to_be_clickable(self.USERNAME_INPUT))
