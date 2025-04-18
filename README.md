@@ -22,6 +22,23 @@ A simple Selenium-based login test for Hudl using Python + Pytest.
    pytest --browser=chrome --html=report.html
    pytest --browser=firefox --html=report.html
    ```
+## Test Scenarios
+
+### 1. Valid Login
+- **Test**: Verifies successful login with valid credentials.
+- **Scenario**: User enters valid username and password.
+
+### 2. Invalid Username
+- **Test**: Verifies that login fails with an invalid username.
+- **Scenario**: User enters an invalid username and valid password.
+
+### 3. Invalid Password
+- **Test**: Verifies that login fails with an incorrect password.
+- **Scenario**: User enters a valid username and an incorrect password.
+
+### 4. Empty Password
+- **Test**: Verifies that login fails when no password is provided.
+- **Scenario**: User enters a valid username but leaves the password field empty.
 
 ## Notes
 - Uses Page Object Model
