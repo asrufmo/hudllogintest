@@ -19,11 +19,23 @@ A simple Selenium-based login test for Hudl using Python + Pytest.
 
 4. Run tests:
    ```
-   pytest --html=report.html
+   pytest --browser=chrome --html=report.html
+   pytest --browser=firefox --html=report.html
    ```
 
 ## Notes
 - Uses Page Object Model
 - No hardcoded credentials or URLs
 - Supports `.env` for secure config
+- Cross-browser testing: Chrome, Firefox, Edge
+- Easy CLI switch via --browser option
 # test
+
+
+## Possible Improvements
+
+- Add Docker support for consistent and isolated test execution
+- Integrate with CI/CD (e.g., GitHub Actions, GitLab CI) for automated test runs
+- Enable parallel test execution using to speed up test suites
+- Archive and visualize test reports (e.g., HTML, Allure) in CI pipelines
+- Improve logging and debugging with screenshots on failure
