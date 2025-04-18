@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class LoginPage:
     # Login form locators
-    USERNAME_INPUT = (By.XPATH, "//input[@id='username' and @name='username']")
+    USERNAME_INPUT = (By.ID, "username")
     CONTINUE_BTN = (By.NAME, "action")
     PASSWORD_INPUT = (By.ID, "password")
 
@@ -37,10 +37,6 @@ class LoginPage:
 
     def wait_until_loaded(self):
         self.wait.until(EC.presence_of_element_located(self.USERNAME_INPUT))
-        # Use JavaScript to ensure the element is in view
-        username_input = self.driver.find_element(*self.USERNAME_INPUT)
-        self.driver.execute_script("arguments[0].scrollIntoView();", username_input)
-        self.wait.until(EC.element_to_be_clickable(self.USERNAME_INPUT))  # Ensure it's clickable
 
     def wait_until_login_page_is_ready(self):
         self.wait.until(EC.element_to_be_clickable(self.USERNAME_INPUT))
