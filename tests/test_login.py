@@ -1,6 +1,6 @@
 import pytest
 from pages.login_page import LoginPage
-from config import HUDL_USERNAME, HUDL_PASSWORD
+from config import HUDL_USERNAME, HUDL_PASSWORD, BASE_URL
 
 
 @pytest.mark.positive
@@ -45,7 +45,7 @@ def test_login_empty_password(driver):
 @pytest.mark.positive
 def test_login_from_bottom_link(driver):
     login_page = LoginPage(driver)
-    login_page.driver.get("https://www.hudl.com")  # Navigate directly to the homepage
+    login_page.driver.get(BASE_URL)  # Navigate directly to the homepage
 
     # Scroll to the bottom of the page
     login_page.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
