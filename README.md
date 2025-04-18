@@ -29,8 +29,6 @@ A simple Selenium-based login test for Hudl using Python + Pytest.
 - Supports `.env` for secure config
 - Cross-browser testing: Chrome, Firefox, Edge
 - Easy CLI switch via --browser option
-# test
-
 
 ## Possible Improvements
 

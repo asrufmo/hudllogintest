@@ -12,6 +12,9 @@ class LoginPage:
     CONTINUE_BTN = (By.NAME, "action")
     PASSWORD_INPUT = (By.ID, "password")
 
+    # Locators for bottom login link
+    BOTTOM_LOGIN_LINK = (By.LINK_TEXT, "Login")
+
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
@@ -35,3 +38,9 @@ class LoginPage:
         self.click_continue()
         self.enter_password(password)
         self.click_continue()
+
+    def click_bottom_login_link(self):
+        self.wait.until(EC.element_to_be_clickable(self.BOTTOM_LOGIN_LINK)).click()
+
+    def is_login_page_loaded(self):
+        return "Login" in self.driver.title

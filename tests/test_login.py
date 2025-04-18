@@ -40,3 +40,18 @@ def test_login_empty_password(driver):
     login_page.click_continue()
 
     assert "login" in driver.current_url.lower()
+
+
+@pytest.mark.positive
+def test_login_from_bottom_link(driver):
+    login_page = LoginPage(driver)
+    login_page.driver.get("https://www.hudl.com")  # Navigate directly to the homepage
+
+    # Scroll to the bottom of the page
+    login_page.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+    # Click the login link at the bottom of the page
+    login_page.click_bottom_login_link()
+
+    # Verify that we are on the login page
+    assert login_page.is_login_page_loaded(), "Login page did not load!"
